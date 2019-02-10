@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "GraphicsFunctions.h"
+#include "aux_fun.h"
 
 using namespace std;
 
@@ -93,9 +95,55 @@ void someLines()
 
 int main()
 {
+    /*
     initwindow(600, 600, "Graphic");
-
     drawWithCommands(someLines);
+    */
+    vector<float> my_val, rez;
+    float its_lwr, its_upr;
+    float wan_lwr, wan_upr;
+
+    int howMany = 1, rt = 1;
+    cout<<"How many? ";
+    cin>>howMany;
+
+
+
+    while(howMany)
+    {
+        if(rt)
+        {
+            cout<<"Value's interval: ";
+            cin>>its_lwr>>its_upr;
+
+            cout<<"Desired interval: ";
+            cin>>wan_lwr>>wan_upr;
+        }
+
+        my_val.resize(howMany);
+        rez.resize(howMany);
+
+        cout<<"Value: ";
+        for(int i=0; i< howMany; i++)
+        {
+        cin>>my_val[i];
+        rez[i] = map(my_val[i],its_lwr,its_upr,wan_lwr,wan_upr);
+        }
+
+        cout<<"[\t";
+        for(int i=0; i< howMany; i++)
+            cout<<my_val[i]<<"\t";
+        cout<<"]\n[\t";
+        for(int i=0; i< howMany; i++)
+            cout<<rez[i]<<"\t";
+        cout<<"]\n";
+
+        cout<<"Reset? ";
+        cin>>rt;
+
+        cout<<"How many? ";
+        cin>>howMany;
+    }
 
     return 0;
 }
